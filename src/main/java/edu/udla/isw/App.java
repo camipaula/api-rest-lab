@@ -15,7 +15,7 @@ public class App extends RouteBuilder {
         // Configuración REST
         restConfiguration()
                 .component("netty-http")
-                .port(8082)
+                .port(7760)
                 .contextPath("/api")
                 .apiContextPath("/api-doc")
                 .apiProperty("api.title", "API de Envíos")
