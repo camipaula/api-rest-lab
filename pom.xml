@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.udla.isw</groupId>
+  <artifactId>api-rest-lab</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>api-rest-lab</name>
+  <!-- Para que compile con Java 17 -->
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <!-- camel version en un solo lugar -->
+    <camel.version>4.7.0</camel.version>
+    <slf4j.version>2.0.13</slf4j.version>
+    <junit.jupiter.version>5.10.2</junit.jupiter.version>
+  </properties>
+  <dependencies>
+    <!-- Apache Camel núcleo -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <!-- Para ejecutar Camel como app standalone (Main) -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-main</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <!-- Soporte REST DSL -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-rest</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <!-- Para exponer REST con netty-http -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-netty-http</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <!-- Para servir la doc OpenAPI -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-openapi-java</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <!-- Logger simple en consola -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <!-- JUnit 5 (para que el test no se queje / y podamos borrar el viejo) -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <!-- Compilar con Java 17 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+      <!-- Tests con JUnit 5 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+        </configuration>
+      </plugin>
+      <!-- Ejecutar la app directamente con todas las dependencias -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <mainClass>edu.udla.isw.App</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
