@@ -100,9 +100,3 @@ NOTAS
 - Puedes cambiarlo modificando la línea en App.java:
   .port(7760)
 - La API está construida con Apache Camel 4.7 y el componente netty-http.
-
-
-CRÉDITOS
---------
-Proyecto desarrollado por Camila Cabrera
-Facultad de Ingeniería — Universidad de las Américas (UDLA)
